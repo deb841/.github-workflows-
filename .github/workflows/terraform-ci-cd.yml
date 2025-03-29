@@ -24,7 +24,7 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
-          role-to-assume: arn:aws:iam::123456789012:role/GitHubActionsRole
+          role-to-assume: arn:aws:iam::730335273167:role/Terraform-action
           aws-region: us-east-1
 
       - name: Setup Terraform
@@ -33,14 +33,16 @@ jobs:
           terraform_version: 1.6.0
 
       - name: Initialize Terraform
-        working-directory: terraform
         run: terraform init
+        working-directory: terraform
 
       - name: Terraform Plan
-        working-directory: terraform
         run: terraform plan -out=tfplan
+        working-directory: terraform
 
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main'
-        working-directory: terraform
         run: terraform apply -auto-approve tfplan
+        working-directory: terraform
+
+
