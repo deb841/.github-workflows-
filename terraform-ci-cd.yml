@@ -1,0 +1,22 @@
+name: Terraform CI/CD  # Name of the workflow
+
+on:
+  push:
+    branches:
+      - main  # Runs when code is pushed to the main branch
+  pull_request:
+    branches:
+      - main  # Runs on pull requests to main branch
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  terraform:
+    name: Terraform Apply
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
